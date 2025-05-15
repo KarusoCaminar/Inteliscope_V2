@@ -214,40 +214,40 @@ with st.sidebar:
     st.subheader("Algorithmus-Parameter")
     
     optimizer_params = {}
-    
+
     if selected_algorithm == "GD_Simple_LS":
-        max_iter = st.slider("Max. Iterationen", 10, 10000, 200)
-        step_norm_tol = st.slider("Schrittnorm Toleranz", 1e-10, 1e-2, 1e-6, format="%.0e")
-        func_impr_tol = st.slider("Funktionsverbesserung Toleranz", 1e-10, 1e-2, 1e-8, format="%.0e")
-        initial_t_ls = st.slider("Initialer Liniensuchschritt", 1e-5, 1e-1, 1e-3, format="%.0e")
-        
+        max_iter = st.slider("Max. Iterationen", 100, 5000, 1000, step=100)
+        step_norm_tol = st.slider("Schrittnorm Toleranz", 1e-12, 1e-3, 1e-7, format="%.0e")
+        func_impr_tol = st.slider("Funktionsverbesserung Toleranz", 1e-12, 1e-3, 1e-9, format="%.0e")
+        initial_t_ls = st.slider("Initialer Liniensuchschritt", 1e-6, 1.0, 0.1, format="%.0e")
+
         optimizer_params = {
             "max_iter": max_iter,
             "step_norm_tol": step_norm_tol,
             "func_impr_tol": func_impr_tol,
             "initial_t_ls": initial_t_ls
         }
-        
+
     elif selected_algorithm == "GD_Momentum":
-        max_iter = st.slider("Max. Iterationen", 10, 10000, 200)
-        learning_rate = st.slider("Lernrate", 1e-4, 1.0, 0.01, format="%.3f")
-        momentum_beta = st.slider("Momentum Beta", 0.0, 0.99, 0.9, format="%.2f")
-        grad_norm_tol = st.slider("Gradientennorm Toleranz", 1e-10, 1e-2, 1e-6, format="%.0e")
-        
+        max_iter = st.slider("Max. Iterationen", 100, 5000, 1000, step=100)
+        learning_rate = st.slider("Lernrate", 1e-5, 1.0, 0.05, format="%.4f")
+        momentum_beta = st.slider("Momentum Beta", 0.0, 0.999, 0.95, format="%.3f")
+        grad_norm_tol = st.slider("Gradientennorm Toleranz", 1e-12, 1e-3, 1e-7, format="%.0e")
+
         optimizer_params = {
             "max_iter": max_iter,
             "learning_rate": learning_rate,
             "momentum_beta": momentum_beta,
             "grad_norm_tol": grad_norm_tol
         }
-        
+
     elif selected_algorithm == "Adam":
-        max_iter = st.slider("Max. Iterationen", 10, 10000, 200)
-        learning_rate = st.slider("Lernrate", 1e-4, 1.0, 0.001, format="%.4f")
-        beta1 = st.slider("Beta1 (Momentum)", 0.0, 0.99, 0.9, format="%.2f")
-        beta2 = st.slider("Beta2 (RMSProp)", 0.0, 0.999, 0.999, format="%.3f")
-        epsilon = st.slider("Epsilon", 1e-10, 1e-5, 1e-8, format="%.0e")
-        
+        max_iter = st.slider("Max. Iterationen", 100, 5000, 1000, step=100)
+        learning_rate = st.slider("Lernrate", 1e-5, 1.0, 0.005, format="%.5f")
+        beta1 = st.slider("Beta1 (Momentum)", 0.0, 0.999, 0.95, format="%.3f")
+        beta2 = st.slider("Beta2 (RMSProp)", 0.0, 0.9999, 0.9995, format="%.4f")
+        epsilon = st.slider("Epsilon", 1e-12, 1e-6, 1e-8, format="%.0e")
+
         optimizer_params = {
             "max_iter": max_iter,
             "learning_rate": learning_rate,
