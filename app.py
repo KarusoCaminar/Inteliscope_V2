@@ -213,67 +213,48 @@ with st.sidebar:
     # Parameter für den ausgewählten Algorithmus
     st.subheader("Algorithmus-Parameter")
     
-     optimizer_params = {} # Einrücken!
-
-    if selected_algorithm == "GD_Simple_LS": # Einrücken!
-        max_iter = st.slider("Max. Iterationen", 10, 5000, 200) # Einrücken!
-        step_norm_tol = st.slider("Schrittnorm Toleranz", 1e-12, 1e-1, 1e-6, format="%.0e") # Einrücken!
-        func_impr_tol = st.slider("Funktionsverbesserung Toleranz", 1e-12, 1e-1, 1e-8, format="%.0e") # Einrücken!
-        initial_t_ls = st.slider("Initialer Liniensuchschritt", 1e-6, 10.0, 0.1, format="%.2f") # Einrücken!
-
-        optimizer_params = { # Einrücken!
+    optimizer_params = {}
+    
+    if selected_algorithm == "GD_Simple_LS":
+        max_iter = st.slider("Max. Iterationen", 10, 1000, 200)
+        step_norm_tol = st.slider("Schrittnorm Toleranz", 1e-10, 1e-2, 1e-6, format="%.0e")
+        func_impr_tol = st.slider("Funktionsverbesserung Toleranz", 1e-10, 1e-2, 1e-8, format="%.0e")
+        initial_t_ls = st.slider("Initialer Liniensuchschritt", 1e-5, 1e-1, 1e-3, format="%.0e")
+        
+        optimizer_params = {
             "max_iter": max_iter,
             "step_norm_tol": step_norm_tol,
             "func_impr_tol": func_impr_tol,
             "initial_t_ls": initial_t_ls
         }
-
-    elif selected_algorithm == "GD_Momentum": # Einrücken!
-        max_iter = st.slider("Max. Iterationen", 10, 5000, 200) # Einrücken!
-        learning_rate = st.slider("Lernrate", 1e-6, 5.0, 0.01, format="%.4f") # Einrücken!
-        momentum_beta = st.slider("Momentum Beta", 0.0, 0.999, 0.9, format="%.3f") # Einrücken!
-        grad_norm_tol = st.slider("Gradientennorm Toleranz", 1e-12, 1e-1, 1e-6, format="%.0e") # Einrücken!
-
-        optimizer_params = { # Einrücken!
+        
+    elif selected_algorithm == "GD_Momentum":
+        max_iter = st.slider("Max. Iterationen", 10, 1000, 200)
+        learning_rate = st.slider("Lernrate", 1e-4, 1.0, 0.01, format="%.3f")
+        momentum_beta = st.slider("Momentum Beta", 0.0, 0.99, 0.9, format="%.2f")
+        grad_norm_tol = st.slider("Gradientennorm Toleranz", 1e-10, 1e-2, 1e-6, format="%.0e")
+        
+        optimizer_params = {
             "max_iter": max_iter,
             "learning_rate": learning_rate,
             "momentum_beta": momentum_beta,
             "grad_norm_tol": grad_norm_tol
         }
-
-    elif selected_algorithm == "Adam": # Einrücken!
-        max_iter = st.slider("Max. Iterationen", 10, 5000, 200) # Einrücken!
-        learning_rate = st.slider("Lernrate", 1e-7, 1.0, 0.001, format="%.5f") # Einrücken!
-        beta1 = st.slider("Beta1 (Momentum)", 0.0, 0.999, 0.9, format="%.3f") # Einrücken!
-        beta2 = st.slider("Beta2 (RMSProp)", 0.0, 0.9999, 0.999, format="%.4f") # Einrücken!
-        epsilon = st.slider("Epsilon", 1e-12, 1e-4, 1e-8, format="%.0e") # Einrücken!
-
-        optimizer_params = { # Einrücken!
+        
+    elif selected_algorithm == "Adam":
+        max_iter = st.slider("Max. Iterationen", 10, 1000, 200)
+        learning_rate = st.slider("Lernrate", 1e-4, 1.0, 0.001, format="%.4f")
+        beta1 = st.slider("Beta1 (Momentum)", 0.0, 0.99, 0.9, format="%.2f")
+        beta2 = st.slider("Beta2 (RMSProp)", 0.0, 0.999, 0.999, format="%.3f")
+        epsilon = st.slider("Epsilon", 1e-10, 1e-5, 1e-8, format="%.0e")
+        
+        optimizer_params = {
             "max_iter": max_iter,
             "learning_rate": learning_rate,
             "beta1": beta1,
             "beta2": beta2,
             "epsilon": epsilon
         }
-        
-elif selected_algorithm == "Adam":
-    max_iter = st.slider("Max. Iterationen", 10, 5000, 200) # Erhöhtes Maximum
-    # Lernrate für Adam kann auch etwas höher für Experimente, obwohl typische Werte klein sind
-    learning_rate = st.slider("Lernrate", 1e-7, 1.0, 0.001, format="%.5f") # Max 1.0, mehr Präzision im Format, min etwas kleiner
-    # Beta1 (Momentum-Teil von Adam)
-    beta1 = st.slider("Beta1 (Momentum)", 0.0, 0.999, 0.9, format="%.3f") # Max leicht erhöht, Format angepasst
-    # Beta2 (RMSProp-Teil von Adam)
-    beta2 = st.slider("Beta2 (RMSProp)", 0.0, 0.9999, 0.999, format="%.4f") # Max leicht erhöht, Format angepasst
-    # Epsilon ist meist sehr klein
-    epsilon = st.slider("Epsilon", 1e-12, 1e-4, 1e-8, format="%.0e") # Bereich etwas erweitert
-
-    optimizer_params = {
-        "max_iter": max_iter,
-        "learning_rate": learning_rate,
-        "beta1": beta1,
-        "beta2": beta2,
-        "epsilon": epsilon
-    }
     
     # Parameter für die Optimierungsstrategie
     if selected_strategy != "single":
