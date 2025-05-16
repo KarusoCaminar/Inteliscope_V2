@@ -1002,6 +1002,7 @@ with tabs[0]:
                         ax_result.legend()
                         
                         st.pyplot(fig_result)
+                        st.close(fig_loss)
                     
                 with col2:
                     # Zeige Verlauf des Funktionswertes
