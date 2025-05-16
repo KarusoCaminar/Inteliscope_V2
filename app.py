@@ -1048,6 +1048,7 @@ with tabs[0]:
                         fig_loss.tight_layout()
                         
                         st.pyplot(fig_loss)
+                        plt.close(fig_loss)
                 
                 # Zeige Details zu den Ergebnissen
                 st.markdown("""
