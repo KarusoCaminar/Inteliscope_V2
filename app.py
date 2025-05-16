@@ -522,6 +522,7 @@ with tabs[0]:
                 
                 # Zeige Plot
                 st.pyplot(fig3d)
+                plt.close(fig3d)
     
     with col2:
         # Erstelle 2D-Konturplot mit matplotlib und füge Kontrollen hinzu
@@ -628,6 +629,7 @@ with tabs[0]:
                 
                 # Plot anzeigen
                 st.pyplot(fig2d)
+                plt.close(fig2d)
     
     # Funktionen für die Optimierung direkt implementieren
     def run_simple_optimization(func, start_point, max_iter=500, learning_rate=0.01, 
@@ -1002,7 +1004,7 @@ with tabs[0]:
                         ax_result.legend()
                         
                         st.pyplot(fig_result)
-                        plt.close(fig_loss)
+                        plt.close(fig_result)
                     
                 with col2:
                     # Zeige Verlauf des Funktionswertes
@@ -1230,6 +1232,7 @@ with tabs[0]:
                     
                     # Plot anzeigen
                     st.pyplot(fig3d_result)
+                    plt.close(fig3d_result)
     
     # Zeige gespeicherte Ergebnisse
     elif current_func and st.session_state.optimierungsergebnisse:
@@ -1312,6 +1315,7 @@ with tabs[0]:
                             ax_result.grid(True, linestyle='--', alpha=0.3)
                             
                             st.pyplot(fig_result)
+                            plt.close(fig_result)
                     
                     with col2:
                         # Zeige Verlauf des Funktionswertes direkt implementiert
@@ -1540,6 +1544,7 @@ with tabs[0]:
                         
                         # Plot anzeigen
                         st.pyplot(fig3d_prev)
+                        plt.close(fig3d_prev)
 
 with tabs[1]:
     st.markdown("## Funktionseditor")
@@ -1692,6 +1697,7 @@ with tabs[1]:
                     ax.grid(True, linestyle='--', alpha=0.3)
                     
                     st.pyplot(fig)
+                    plt.close(fig)
                     
                     # Füge Button zum Löschen hinzu
                     if st.button(f"Löschen: {name}"):
@@ -1773,6 +1779,7 @@ with tabs[2]:
                     
                     # Zeige Plot
                     st.pyplot(fig_comparison)
+                    plt.close(fig_comparison)
                 
                 with col2:
                     # Tabelle mit Ergebnissen
@@ -1892,6 +1899,7 @@ with tabs[2]:
                     ax.set_ylim(y_range)
                     
                     st.pyplot(fig)
+                    plt.close(fig)
                     
                     # 3D-Vergleich
                     st.markdown("### 3D-Vergleich der Optimierungspfade")
